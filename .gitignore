@@ -1,0 +1,38 @@
+﻿# Java / Spring Boot / Maven
+**/target/
+*.class
+*.log
+
+# Node.js / React / Vite
+**/node_modules/
+**/dist/
+**/coverage/
+
+# Variables de entorno y credenciales
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.pem
+*.key
+
+# Terraform
+**/.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+**/backend.hcl
+*.tfvars
+*.tfvars.json
+!*.tfvars.example
+crash.log
+crash.*.log
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
