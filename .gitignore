@@ -36,3 +36,5 @@ crash.*.log
 # Sistema operativo
 .DS_Store
 Thumbs.db
+# Paquetes Lambda generados
+infra/terraform/lambda/*.zip
