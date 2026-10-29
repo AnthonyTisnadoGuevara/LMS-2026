@@ -1,0 +1,37 @@
+
+name: Test AWS OIDC - LMS
+
+on:
+  push:
+    branches:
+      - develop
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  test-aws:
+    name: Verificar conexion AWS
+    runs-on: ubuntu-latest
+    environment: dev
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Autenticarse en AWS con OIDC
+        uses: aws-actions/configure-aws-credentials@v6.3.0
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Verificar identidad AWS
+        run: aws sts get-caller-identity
+
+      - name: Confirmar bucket configurado
+        env:
+          TF_STATE_BUCKET: ${{ vars.TF_STATE_BUCKET }}
+        run: |
+          test -n "$TF_STATE_BUCKET"
+          echo "Variable TF_STATE_BUCKET configurada"
